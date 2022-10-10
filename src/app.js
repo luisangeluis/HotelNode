@@ -16,7 +16,7 @@ const initModels = require('./models/init.models');
 const defaultData =require('./utils/defaultData');
 
 const {db} = require('./utils/database');
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 //Configuraciones iniciales
 const app = express();
