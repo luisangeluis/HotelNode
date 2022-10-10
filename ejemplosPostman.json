@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "juan",
+    "lastName": "perez",
+    "email": "juan@example.com",
+    "password": "12345",
+    "phone": "1234567890"
+  },
+  {
+    "title": "un room",
+    "description": "una description",
+    "guests": 10,
+    "beds": 5,
+    "bathrooms": 3.5,
+    "price": 500,
+    "isActive": true
+  },
+  {
+    "arrival": "2022-10-10T05:00:00.000Z",
+    "departure": "2022-10-20T05:00:00.000Z",
+    "adults": 2,
+    "kids": 0,
+    "babies": 0,
+    "pets": 0,
+    "identificacion": "12345",
+    "address": "mi direccion",
+    "paymentMethod": "efectivo"
+  }
+]

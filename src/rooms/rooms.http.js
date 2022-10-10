@@ -57,7 +57,7 @@ const editRoom = (req, res) => {
   }
 
   roomsControllers.updateRoom(id, data)
-    .ten(response => {
+    .then(response => {
       if (response) {
         return res.status(200).json({ message: `Room with id:${id} edit successfully` });
       } else {
@@ -81,5 +81,13 @@ const deleteRoom = (req, res) => {
       }
     })
     .catch(error => res.status(400).json({ message: error.message }))
+}
+
+module.exports={
+  getAll,
+  getById,
+  addRoom,
+  editRoom,
+  deleteRoom
 }
 

@@ -43,6 +43,7 @@ const register = (req, res) => {
         lastName: 'string',
         email: 'example@example.com',
         password: 'string',
+        phone: '1234567890',
       },
     });
   } else {
@@ -71,6 +72,7 @@ const remove = (req, res) => {
         return res.status(400).json({ message: 'Invalid Id' });
       }
     })
+    .catch(error => res.status(400).json({ message: error.message }))
 };
 
 const edit = (req, res) => {
@@ -79,40 +81,14 @@ const edit = (req, res) => {
 
   if (!Object.keys(data).length) {
     return res.status(400).json({ message: 'Missing data' });
-  } else if (
-    !data.first_name ||
-    !data.last_name ||
-    !data.email ||
-    !data.phone ||
-    !data.rol ||
-    !data.profile_image ||
-    !data.birthday_date ||
-    !data.country ||
-    !data.active
-  ) {
-    return res.status(400).json({
-      message: 'All fields must be completed',
-      fields: {
-        first_name: 'string',
-        last_name: 'string',
-        email: 'example@example.com',
-        phone: '+521234567890',
-        rol: 'normal',
-        profile_image: 'example.com/image/example.png',
-        birthday_date: 'DD/MM/YYYY',
-        country: 'string',
-        active: true,
-      },
-    });
-  } else {
-    const response = userControllers.editUser(id, data);
-
-    res.status(200).json({
-      message: 'User edited succesfully',
-      user: response,
-    });
   }
-};
+  userControllers.updateUser(id, data)
+    .then(response => {
+      if (response) return res.status(200).json({ message: `User with id:${id} edited successfully` })
+      else return res.status(404).json({ message: `User with id:${id} doesn't exist` })
+    })
+    .catch(error => res.status(400).json({ message: error.message }))
+}
 
 const editMyUser = (req, res) => {
   const id = req.user.id;
@@ -120,71 +96,39 @@ const editMyUser = (req, res) => {
 
   if (!Object.keys(data).length) {
     return res.status(400).json({ message: 'Missing data' });
-  } else if (
-    !data.first_name ||
-    !data.last_name ||
-    !data.email ||
-    !data.phone ||
-    !data.profile_image ||
-    !data.birthday_date ||
-    !data.country ||
-    !data.active
-  ) {
-    return res.status(400).json({
-      message: 'All fields must be completed',
-      fields: {
-        first_name: 'string',
-        last_name: 'string',
-        email: 'example@example.com',
-        password: 'string',
-        phone: '+521234567890',
-        rol: 'normal',
-        profile_image: 'example.com/image/example.png',
-        birthday_date: 'DD/MM/YYYY',
-        country: 'string',
-        active: true,
-      },
-    });
-  } else {
-    const response = userControllers.editUser(id, data);
-
-    res.status(200).json({
-      message: 'User edited succesfully',
-      user: response,
-    });
   }
-};
+
+  userControllers.updateMyUser(id, data)
+    .then(response => {
+      if (response) return res.status(200).json({ message: `User with id:${id} edited successfully` })
+      else return res.status(404).json({ message: `User with id:${id} doesn't exist` })
+    })
+    .catch(error => res.status(400).json({ message: error.message }))
+}
 
 const getMyUser = (req, res) => {
   const id = req.user.id;
-  const data = userControllers.getUserById(id);
 
-  if (data) {
-    res.status(200).json({ data });
-  } else {
-    res.status(404).json({ message: `The user with ${id} doesn't exist` });
-  }
-};
+  userControllers.getUserById(id)
+    .then(response => {
+      if (response) return res.status(200).json(response)
+      else return res.status(404).json({ message: `User with id${id} doesn't exist` })
+    })
+    .catch(error => res.status(400).json({ message: error.message }))
+}
 
 const removeMyUser = (req, res) => {
   const id = req.user.id;
-  const data = userControllers.deleteUser(id);
-
-  if (data) {
-    return res.status(204).json();
-  } else {
-    return res.status(400).json({ message: 'Invalid ID' });
-  }
+  
+  userControllers.deleteUser(id)
+    .then(response=>{
+      if(response) return res.status(204).json()
+      else return res.status(404).json({message:`User with id${id} doesn't exist`})
+    })
+    .catch(error=>res.status(400).json({message:error.message}))
 };
 
-const postProfileImg = (req, res) => {
-  const userId = req.user.id;
-  const imgPath = req.hostname + ':3000' + '/api/v1/uploads/' + req.file.filename;
-  const data = userControllers.editProfileImg(userId, imgPath);
 
-  res.status(200).json(data);
-
-}
 module.exports = {
   getAll,
   getById,
@@ -193,6 +137,5 @@ module.exports = {
   edit,
   editMyUser,
   getMyUser,
-  removeMyUser,
-  postProfileImg
+  removeMyUser
 };

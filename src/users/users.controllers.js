@@ -13,18 +13,14 @@ const getAllUsers = async () => {
 }
 
 const getUserById = async (id) => {
-
   const data = await Users.findOne({
-    where: {
-      id: id
-    },
+    where: { id: id },
     attributes: {
       exclude: ['password']
     }
   })
+
   return data;
-
-
 }
 const createUser = async (data) => {
   const newUser = await Users.create({
@@ -39,80 +35,57 @@ const createUser = async (data) => {
   return newUser;
 }
 
-const editUser = async (userId, data, userRol) => {
+const updateUser = async (userId, data) => {
+  const { id, password, verified, ...restOfData } = data;
 
-  if (userRol === 'admin') {
-    const { id, password, verified, ...newData } = data;
-    const response = Users.update({
-      ...newData
-    }, {
-      where: {
-        id: userId
-      }
-    });
+  const response = Users.update(
+    { ...restOfData },
+    { where: { id: userId } }
+  )
 
-    return response;
-  } else {
-    const { id, password, verified, role, ...newData } = data;
-    const response = Users.update({
-      //Valores que quiero actualizar
-      ...newData
-    }, {
-      where: {
-        id: userId
-      }
-    });
-
-    return response;
-  }
+  return response;
 }
 
 const deleteUser = async (id) => {
-  const data = await Users.destroy({
-    where: {
-      id: id
-    }
-  })
+  const deleted = { status: 'deleted' }
 
-  return data;
+  const response = await Users.update(
+    { ...deleted },
+    { where: { id: id } }
+  )
 
+  return response;
 }
+
+const updateMyUser = async (userId, data) => {
+  const { id, password, roleId, status, verified, createdAt, updatedAt, ...restOfData } = data;
+
+  const response = await Users.update(
+    { ...restOfData },
+    { where: { id: userId } }
+  )
+
+  return response;
+}
+
+
 
 const getUserByEmail = async (email) => {
-  const response = await Users.findOne({ where: { email } });
+  const response =await Users.findOne({
+     where: { email },
+     attributes:{
+      exclude:['createdAt','updatedAt']
+     }
+  });
   return response;
-  // const data = userDB.filter(item => item.email === email);
-  // return data.length > 0 ? data[0] : false;
-}
-
-const editProfileImg = async (userId, imgUrl) => {
-
-  const response = await Users.update({
-    profileImage: imgUrl
-  }, {
-    where: {
-      id: userId
-    }
-  })
-
-  return response;
-
-  // const index = userDB.findIndex(user => user.id === userId);
-
-  // if (index !== -1) {
-  //   userDB[index].profile_image = imgUrl;
-  //   return userDB[index];
-  // }
-
-  // return false;
 }
 
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
-  editUser,
+  updateUser,
   deleteUser,
-  getUserByEmail,
-  editProfileImg
+  updateMyUser,
+  getUserByEmail
 }

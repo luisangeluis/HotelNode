@@ -23,12 +23,12 @@ const createRoom = async = async (data) => {
   return response;
 }
 
-const updateRoom = async (id, data) => {
+const updateRoom = async (roomId, data) => {
   const { id, ...restOfData } = data;
 
   const response = await Rooms.update(
     { ...restOfData },
-    { where: { id } }
+    { where: { id: roomId } }
   )
 
   return response;
@@ -36,9 +36,12 @@ const updateRoom = async (id, data) => {
 
 const deleteRoom = async (id) => {
   const active = { isActive: false }
-  const response = await Rooms.update({
-    ...active
-  })
+  const response = await Rooms.update(
+    {
+      ...active
+    },
+    {where:{id}}
+  )
 
   return response;
 }

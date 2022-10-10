@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize');
 const { db } = require('../utils/database');
 
-const Users =require('./user.model');
+const Users = require('./user.model');
 const Rooms = require('./room.model');
-
+//TODO add dni and address
 const Reservations = db.define('reservations', {
   id: {
     primaryKey: true,
@@ -19,46 +19,59 @@ const Reservations = db.define('reservations', {
       key: 'id'
     }
   },
-  arrival:{
-    type:DataTypes.DATE,
-    allowNull:false
+  arrival: {
+    type: DataTypes.DATE,
+    allowNull: false
   },
-  departure:{
-    type:DataTypes.DATE,
-    allowNull:false
+  departure: {
+    type: DataTypes.DATE,
+    allowNull: false
   },
-  roomId:{
-    type:DataTypes.UUID,
-    allowNull:false,
-    field:"room_id",
+  roomId: {
+    type: DataTypes.UUID,
+    allowNull: false,
+    field: "room_id",
     references: {
       model: Rooms,
       key: 'id'
     }
   },
-  adults:{
-    type:DataTypes.INTEGER,
-    allowNull:false,
+  adults: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  kids:{
-    type:DataTypes.INTEGER,
-    allowNull:false,
+  kids: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
     defaultValue: 0,
   },
-  babies:{
-    type:DataTypes.INTEGER,
-    allowNull:false,
+  babies: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
     defaultValue: 0,
   },
-  pets:{
-    type:DataTypes.INTEGER,
-    allowNull:false,
+  pets: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
     defaultValue: 0,
+  },
+  identificacion: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  paymentMethod: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: "payment_Method",
   },
   state: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue:'pendiente'
+    defaultValue: 'pendiente'
   }
 })
 

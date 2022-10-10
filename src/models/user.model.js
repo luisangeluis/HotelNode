@@ -39,9 +39,7 @@ const Users = db.define('users', {
     type: DataTypes.STRING,
 
   },
-  address: {
-    type: DataTypes.STRING
-  },
+  
   roleId: {
     allowNull: false,
     type: DataTypes.UUID,
@@ -54,7 +52,7 @@ const Users = db.define('users', {
   status: {
     allowNull: false,
     type: DataTypes.STRING,
-    defaultValue: 'active' //active, non-active, deleted, suspended
+    defaultValue: 'active' //active,deleted, suspended
   },
   verified: {
     allowNull: false,

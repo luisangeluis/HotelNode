@@ -1,32 +1,22 @@
 const router = require('express').Router();
-//PARA PROTEGER LAS RUTAS
 const passport = require('passport');
 const { roleAdminMiddleware } = require('../middleware/adminRole.middleware');
-const { upload } = require('../utils/multer');
 require('../middleware/auth.middleware')(passport);
 
 const usersServices = require('./users.http');
 
-router
-  .route('/') //* /api/v1/users/
-  .get(usersServices.getAll)
-  .post(usersServices.register)
+router.route('/')
+  .get(passport.authenticate('jwt', { session: false }), roleAdminMiddleware,usersServices.getAll)/*ok*/ 
 
-
-//TO DO GET Y DELETE
 router.route('/me')
-  .put(passport.authenticate('jwt', { session: false }), usersServices.editMyUser)
-  .get(passport.authenticate('jwt', { session: false }), usersServices.getMyUser)
-  .delete(passport.authenticate('jwt', { session: false }), usersServices.removeMyUser);
-
-router.route('/me/profile-img')
-  .post(passport.authenticate('jwt', { session: false }), upload.single('profile_img'), usersServices.postProfileImg)
-// .get(passport.authenticate('jwt', { session: false }),);
+  .put(passport.authenticate('jwt', { session: false }), usersServices.editMyUser)/*ok*/
+  .get(passport.authenticate('jwt', { session: false }), usersServices.getMyUser)/*ok*/
+  .delete(passport.authenticate('jwt', { session: false }), usersServices.removeMyUser);/*ok*/
 
 router
   .route('/:id')
-  .get(passport.authenticate('jwt', { session: false }), usersServices.getById)
-  .delete(passport.authenticate('jwt', { session: false }), roleAdminMiddleware, usersServices.remove)
-  .put(passport.authenticate('jwt', { session: false }), roleAdminMiddleware, usersServices.edit);
+  .get(passport.authenticate('jwt', { session: false }), roleAdminMiddleware,usersServices.getById)/*ok*/
+  .delete(passport.authenticate('jwt', { session: false }), roleAdminMiddleware, usersServices.remove)/*ok*/
+  .put(passport.authenticate('jwt', { session: false }), roleAdminMiddleware, usersServices.edit);/*ok*/ 
 
 exports.router = router;
