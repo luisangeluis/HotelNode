@@ -69,6 +69,9 @@
 
 [✔]Registrar mi usuario.
 [✔]Logguear mi usuario.
+[✔]Crud de reservations con guest
+[✔]Crud de reservations con host.
+[✔]Crud de rooms con host.
 
 ### Sin sesión iniciada
 1. Ver rooms.
