@@ -104,7 +104,7 @@ const readMyReservation = (userId, reservationId) => {
 
 const updateMyReservation = (userID, reservationId, data) => {
   const { id, userId, roomId, state, ...restOfData } = data;
-  const response = Reservations.findOne(
+  const response = Reservations.update(
     { ...restOfData },
     { where: { userId: userID, id: reservationId } }
   )

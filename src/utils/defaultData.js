@@ -68,8 +68,28 @@ const generateData = async () => {
       price: 300,
       isActive: true
     },
-    
+
   ])
+
+  await Reservations.bulkCreate([
+  {
+      kids: 0,
+      babies: 0,
+      pets: 0,
+      arrival: "2020-10-10T05:00:00.000Z",
+      departure: "2020-10-10T05:00:00.000Z",
+      adults: 2,
+      identificacion: "12345",
+      address: "mi direccion",
+      paymentMethod: "efectivo",
+      id: "0fc11821-4e7e-4a03-acc5-658e499b0421",
+      userId: "de333663-1ab5-4b86-ab29-9b4e449f8191",
+      roomId: "a9004d1d-0b1f-44b9-9230-7b96d69a45f9",
+      state: "pendiente",
+    }
+  ]
+    
+  )
 }
 
 module.exports = generateData;

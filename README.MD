@@ -67,6 +67,9 @@
 
 # PATH DE USUARIOS
 
+[✔]Registrar mi usuario.
+[✔]Logguear mi usuario.
+
 ### Sin sesión iniciada
 1. Ver rooms.
 2. Ver detalle rooms.

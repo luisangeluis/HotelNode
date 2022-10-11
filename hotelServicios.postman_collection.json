@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "e922119f-9de5-45ff-bde9-cb6b13bf5fe4",
+		"name": "hotelServicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12459556"
+	},
+	"item": [
+		{
+			"name": "reservations",
+			"item": [
+				{
+					"name": "reservationsAdmin",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1ZmY2Y2M4LTViN2YtNGVhOS1hMzU4LTcwYjdjM2JkMWQxNyIsImVtYWlsIjoibHVpc0Bjb3JyZW8uY29tIiwicm9sZUlkIjoiNWVlNTUxZWQtN2JmNC00NGIwLWFlYjUtZGFhYTgyNGI5NDczIiwiaWF0IjoxNjY1MzY0OTIzfQ.1zcGqFNGBL-NOgPOtN5ybskwMCxPNBgLMFJJX2avtXI",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations"
+									]
+								},
+								"description": "### \\### Peticion para admin reservations\n\n\\* Obtener todas las reservations logueado como admin"
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1ZmY2Y2M4LTViN2YtNGVhOS1hMzU4LTcwYjdjM2JkMWQxNyIsImVtYWlsIjoibHVpc0Bjb3JyZW8uY29tIiwicm9sZUlkIjoiNWVlNTUxZWQtN2JmNC00NGIwLWFlYjUtZGFhYTgyNGI5NDczIiwiaWF0IjoxNjY1MzY0OTIzfQ.1zcGqFNGBL-NOgPOtN5ybskwMCxPNBgLMFJJX2avtXI",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "StartFragment\n\n### \\### Peticion para admin reservations\n\n\\*   Obtener una reservation con id logueado como admin\n    \n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "editById",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1ZmY2Y2M4LTViN2YtNGVhOS1hMzU4LTcwYjdjM2JkMWQxNyIsImVtYWlsIjoibHVpc0Bjb3JyZW8uY29tIiwicm9sZUlkIjoiNWVlNTUxZWQtN2JmNC00NGIwLWFlYjUtZGFhYTgyNGI5NDczIiwiaWF0IjoxNjY1MzY0OTIzfQ.1zcGqFNGBL-NOgPOtN5ybskwMCxPNBgLMFJJX2avtXI",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"adults\":\"3\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "### \\### Peticion para admin reservations-\n\n\\*   Modificar una reservation por id con user de admin."
+							},
+							"response": []
+						},
+						{
+							"name": "deleteById",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1ZmY2Y2M4LTViN2YtNGVhOS1hMzU4LTcwYjdjM2JkMWQxNyIsImVtYWlsIjoibHVpc0Bjb3JyZW8uY29tIiwicm9sZUlkIjoiNWVlNTUxZWQtN2JmNC00NGIwLWFlYjUtZGFhYTgyNGI5NDczIiwiaWF0IjoxNjY1MzY0OTIzfQ.1zcGqFNGBL-NOgPOtN5ybskwMCxPNBgLMFJJX2avtXI",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "### \\### Peticion para admin reservations-\n\n\\*   Borrar una reservation por id con user de admin."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "reservationsGuest",
+					"item": [
+						{
+							"name": "postReservation",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"host": true,
+									"user-agent": true,
+									"accept": true,
+									"accept-encoding": true,
+									"connection": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMzMzNjYzLTFhYjUtNGI4Ni1hYjI5LTliNGU0NDlmODE5MSIsImVtYWlsIjoiYW5nZWxAY29ycmVvLmNvbSIsInJvbGVJZCI6ImZlZjNhMDhkLTJjZWMtNDcyOC05NzQ1LTdjYmQyYjM3ZTU1NyIsImlhdCI6MTY2NTM2OTAwMH0.gUqFxFrVe6VSFvNpDvy4diZc5ot3EhGGdnRGyVy-R1Y",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"arrival\":\"2020/10/10\",\r\n  \"departure\":\"2020/10/10\",\r\n  \"adults\":\"2\",\r\n  \"identificacion\": \"12345\",\r\n  \"address\": \"mi direccion\",\r\n  \"paymentMethod\": \"efectivo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:4000/api/v1/rooms/:id/make-reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"rooms",
+										":id",
+										"make-reservation"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "a9004d1d-0b1f-44b9-9230-7b96d69a45f9",
+											"description": "Id del room"
+										}
+									]
+								},
+								"description": "### \\### Peticion para guest reservations\n\n\\* Crear una reservacion a travez del id del room, como guest y los datos minimos necesarios en body como json\n\nStartFragment\n\n{  \n\n\"arrival\":\"2020/10/10\",  \n\n\"departure\":\"2020/10/10\",\n\n  \"adults\":\"2\",\n\n  \"identificacion\": \"12345\",\n\n  \"address\": \"mi direccion\",\n\n  \"paymentMethod\": \"efectivo\"\n\n}\n\nEndFragment"
+							},
+							"response": []
+						},
+						{
+							"name": "getMyReservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMzMzNjYzLTFhYjUtNGI4Ni1hYjI5LTliNGU0NDlmODE5MSIsImVtYWlsIjoiYW5nZWxAY29ycmVvLmNvbSIsInJvbGVJZCI6ImZlZjNhMDhkLTJjZWMtNDcyOC05NzQ1LTdjYmQyYjM3ZTU1NyIsImlhdCI6MTY2NTM2OTAwMH0.gUqFxFrVe6VSFvNpDvy4diZc5ot3EhGGdnRGyVy-R1Y",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/my-reservations",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										"my-reservations"
+									]
+								},
+								"description": "### \\### Peticion para guest reservations\n\n\\*   Obtener todas las reservations del guest"
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMzMzNjYzLTFhYjUtNGI4Ni1hYjI5LTliNGU0NDlmODE5MSIsImVtYWlsIjoiYW5nZWxAY29ycmVvLmNvbSIsInJvbGVJZCI6ImZlZjNhMDhkLTJjZWMtNDcyOC05NzQ1LTdjYmQyYjM3ZTU1NyIsImlhdCI6MTY2NTM2OTAwMH0.gUqFxFrVe6VSFvNpDvy4diZc5ot3EhGGdnRGyVy-R1Y",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/my-reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										"my-reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "### \\### Peticion para guest reservations\n\n\\* Obtener una reservation por id, user guest"
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRlMzMzNjYzLTFhYjUtNGI4Ni1hYjI5LTliNGU0NDlmODE5MSIsImVtYWlsIjoiYW5nZWxAY29ycmVvLmNvbSIsInJvbGVJZCI6ImZlZjNhMDhkLTJjZWMtNDcyOC05NzQ1LTdjYmQyYjM3ZTU1NyIsImlhdCI6MTY2NTM2OTAwMH0.gUqFxFrVe6VSFvNpDvy4diZc5ot3EhGGdnRGyVy-R1Y",
+										"description": "Token JWT",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/my-reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										"my-reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "### \\### Peticion para guest reservations\n\n\\* Cambia el estado de las reservations del guest por id"
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:4000/api/v1/reservations/my-reservations/:id",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"v1",
+										"reservations",
+										"my-reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0fc11821-4e7e-4a03-acc5-658e499b0421",
+											"description": "Id de la reservation"
+										}
+									]
+								},
+								"description": "### \\### Peticion para guest reservations\n\n\\*   Edit una reservation por id, user guest"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

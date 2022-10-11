@@ -16,16 +16,19 @@ services:
       # es para agregar todo los cambios a docker
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    # DATABASE_URL: postgres://username:12345@postgres:5432/hotel
+
   postgres:
     image: postgres:14
     restart: always
     ports:
       - "5432:5432"
     environment:
-      - DATABASE_HOST=127.0.0.1
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=12345
-      - POSTGRES_DB=hotel
+     - DATABASE_HOST=postgres
+     - POSTGRES_USER=root
+     - POSTGRES_PASSWORD=12345
+     - POSTGRES_DB=hotel
+    
 
   pgadmin:
     image: dpage/pgadmin4

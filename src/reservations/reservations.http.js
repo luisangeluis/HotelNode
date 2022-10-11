@@ -29,14 +29,16 @@ const post = (req, res) => {
     return res.status(400).json({ message: 'Missing data' });
   }
 
-  if (!data.arrival || !data.departure || !data.adults) {
+  if (!data.arrival || !data.departure || !data.adults ||!data.identificacion ||!data.address || !data.paymentMethod) {
     return res.status(400).json({
       message: 'All fields must be completed',
       fields: {
         arrival: 'date',
         departure: 'date',
         adults: 'Type a num',
-        
+        identificacion: 'Type your identification Id',
+        address:'Type your address Id',
+        paymentMethod:'Type your payment method'
       }
     })
   } else {
